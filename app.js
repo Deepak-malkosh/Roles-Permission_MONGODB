@@ -14,9 +14,12 @@ mongoose.connect('mongodb://localhost:27017/USER_ROLES').then(() =>{
 
 app.use(express.static('public'));
 
+app.use(express.json());
+
 const port = process.env.PORT || 6001;
 
-
+const authRoute = require('./routes/auth.routes');
+app.use('/api', authRoute);
 
 
 app.listen(port, () => {
