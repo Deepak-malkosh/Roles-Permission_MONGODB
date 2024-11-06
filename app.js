@@ -18,8 +18,13 @@ app.use(express.json());
 
 const port = process.env.PORT || 6001;
 
+//auth route
 const authRoute = require('./routes/auth.routes');
 app.use('/api', authRoute);
+
+//admin route
+const adminRoute = require('./routes/admin.routes');
+app.use('/admin', adminRoute);
 
 
 app.listen(port, () => {
