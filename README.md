@@ -40,3 +40,10 @@
         permission_value:[0,2] // 0-> create, 2-> edit
     }
    ] 
+
+
+
+   Lecture:5 //
+
+   1. Create Permission Model.
+   2. Create Add permission API from Admin.

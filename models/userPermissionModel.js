@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-const permissionSchema = new mongoose.Schema({
+const userPermissionSchema = new mongoose.Schema({
 
     user_id:{
         type: mongoose.Schema.Types.ObjectId,
@@ -15,5 +15,5 @@ const permissionSchema = new mongoose.Schema({
 });
 
 
-module.exports = mongoose.model("permission", permissionSchema);
+module.exports = mongoose.model("Userpermission", userPermissionSchema);
 
