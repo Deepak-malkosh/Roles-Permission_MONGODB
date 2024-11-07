@@ -53,3 +53,7 @@
 
    1.Create Auth Middleware
    2.Create get user API Profile
+
+
+   Lecture:7 //
+   Create Read, Delete and Update Permission API for Admin 
