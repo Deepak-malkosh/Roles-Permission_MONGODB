@@ -66,4 +66,6 @@
 
    Lecture:10 //
    Create & Read POST API
-    
+
+   Lecture:11 //
+   Delete & Update Post API 

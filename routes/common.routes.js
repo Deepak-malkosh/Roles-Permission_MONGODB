@@ -3,7 +3,8 @@ const router = express();
 
 const auth  = require('../middleware/auth');
 
-const { categoryAddValidator ,categoryDeleteValidator, categoryUpdateValidator, postCreateValidator} = require('../helpers/adminValidator');
+const { categoryAddValidator ,categoryDeleteValidator, categoryUpdateValidator,
+       postCreateValidator, postDeleteValidator, postUpdateValidator} = require('../helpers/adminValidator');
 
 const categoryController = require('../controller/categoryController');
 
@@ -20,7 +21,8 @@ const postController = require('../controller/postController');
 //post routes
 router.post('/create-post', auth, postCreateValidator, postController.addPost);
 router.get('/get-post', auth, postController.getPosts);
-
+router.delete('/delete-post', auth, postDeleteValidator, postController.deletePost);
+router.put('/update-post', auth, postUpdateValidator, postController.updatePost);
 
 
 
