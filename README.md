@@ -47,3 +47,9 @@
 
    1. Create Permission Model.
    2. Create Add permission API from Admin.
+
+
+   Lecture:6 //
+
+   1.Create Auth Middleware
+   2.Create get user API Profile
