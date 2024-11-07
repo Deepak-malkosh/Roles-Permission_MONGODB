@@ -63,3 +63,7 @@
 
    Lecture:9 //
    Create CRUD APIs for Category. 
+
+   Lecture:10 //
+   Create & Read POST API
+    
