@@ -26,6 +26,10 @@ app.use('/api', authRoute);
 const adminRoute = require('./routes/admin.routes');
 app.use('/admin', adminRoute);
 
+//common route
+const commonRoute = require('./routes/common.routes');
+app.use('/api', commonRoute);
+
 
 app.listen(port, () => {
     console.log(`server runnig at port : ${port}`);

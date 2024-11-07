@@ -61,4 +61,5 @@
    Lecture:8  //
    Only Admin Can Access Permissions API
 
-    
+   Lecture:9 //
+   Create CRUD APIs for Category. 
