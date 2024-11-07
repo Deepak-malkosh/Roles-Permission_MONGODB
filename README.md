@@ -57,3 +57,8 @@
 
    Lecture:7 //
    Create Read, Delete and Update Permission API for Admin 
+
+   Lecture:8  //
+   Only Admin Can Access Permissions API
+
+    

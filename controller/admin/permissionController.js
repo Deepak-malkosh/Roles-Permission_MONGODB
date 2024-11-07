@@ -179,6 +179,8 @@ const updatePermission = async (req, res) =>{
     }
 }
 
+
+
 module.exports = {
     addPermission,
     getPermissions,
