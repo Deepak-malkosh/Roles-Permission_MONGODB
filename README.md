@@ -73,9 +73,12 @@
    Lecture:12 //
    Store & Get Roles for Admin
 
-
    Lecture:13 //
    Create User API 
 
    Lecture:14 //
    Send mail to User with their details & password
+
+   Lecture:15 //
+   Get User AND Update user API
+
