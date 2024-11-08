@@ -2,6 +2,8 @@ const User = require('../models/userModel');
 
 const { validationResult } = require('express-validator');
 
+const { sendMail } = require('../helpers/mailer');
+
 const bcrypt = require('bcrypt');
 const randomstring = require('randomstring');
 
@@ -54,6 +56,29 @@ const createUser = async (req, res) =>{
         const userData = await user.save();
 
         console.log("password===>",password);
+
+        const content = `
+             <p>Hii <b>`+userData.name+`, </b> Your account is created, below is your details. </p>
+             <table style="border-style:none">
+                <tr>
+                    <th>Name:- </th>
+                    <td>`+userData.name+` </td>
+                </tr> 
+                                <tr>
+                    <th>Email:- </th>
+                    <td>`+userData.email+` </td>
+                </tr>
+                <tr>
+                    <th>Password:- </th>
+                    <td>`+password+` </td>
+                </tr> 
+              </table>  
+              <p>Now you login your Account in our application, Thanks...</p>
+
+        `;
+
+        // sendMail(userData.email, 'Account Created', content);
+
         return res.status(200).json({
             success:true,
             msg:"User Created Successfully",

@@ -76,3 +76,6 @@
 
    Lecture:13 //
    Create User API 
+
+   Lecture:14 //
+   Send mail to User with their details & password
