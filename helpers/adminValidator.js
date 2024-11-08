@@ -60,4 +60,12 @@ exports.postUpdateValidator = [
 ];
 
 
+exports.storeRoleValidator = [
+    
+    check('role_name', 'role_name is required').not().isEmpty(),
+    check('value', 'value is required').not().isEmpty(),
+   
+];
+
+
  
