@@ -1,0 +1,21 @@
+{
+  "name": "roles-permission_mongodb",
+  "version": "1.0.0",
+  "description": "POST MANAGING :->       .Post       .Categories       .Comments       .Likes",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon app"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.20.3",
+    "dotenv": "^16.4.7",
+    "express": "^4.21.2",
+    "express-validator": "^7.2.1",
+    "mongoose": "^8.9.5",
+    "nodemon": "^3.1.9"
+  }
+}
