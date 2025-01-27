@@ -17,12 +17,17 @@ app.use(express.static('public'));
 
 const port = process.env.PORT || 3333; 
 
-
+//auth route
 const authRoute = require('./routes/auth.routes');
 app.use('/api',authRoute);
 
+//admin route
 const adminRoute = require('./routes/admin.routes');
 app.use('/admin',adminRoute); 
+
+//common route
+const commonRoute = require('./routes/common.routes');
+app.use('/api',commonRoute)
 
 
 app.listen(port, () =>{
