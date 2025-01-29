@@ -34,3 +34,15 @@ exports.updateUserValidator = [
 exports.deleteUserValidator = [
     check('id', 'id is required').not().isEmpty()
 ];
+
+
+
+exports.postLikeUnlikeValidator = [
+    check('user_id', 'user_id is required').not().isEmpty(),
+    check('post_id', 'post_id is required').not().isEmpty()
+];
+
+
+exports.postLikeCountValidator = [
+    check('post_id', 'post_id is required').not().isEmpty()
+];
