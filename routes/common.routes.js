@@ -8,13 +8,16 @@ const { categoryAddValidator, categoryDeleteValidator , categoryUpdateValidator,
     } = require('../helpers/adminValidator');
 
 
-const { createUserValidator , updateUserValidator, deleteUserValidator } = require('../helpers/validator')   
+const { createUserValidator , updateUserValidator, deleteUserValidator, postLikeUnlikeValidator,
+     postLikeCountValidator } = require('../helpers/validator')   
 
 const categoryController = require('../controller/categoryController');
 
 const postController = require('../controller/postController');
 
 const userController = require('../controller/userController');
+
+const likeController = require('../controller/likeController')
 
 
 //category Routes
@@ -37,6 +40,13 @@ router.post('/create-user', auth, createUserValidator, userController.createUser
 router.get('/get-users', auth, userController.getUsers);
 router.put('/update-user', auth, updateUserValidator, userController.updateUser);
 router.delete('/delete-user', auth, deleteUserValidator, userController.deleteUser);
+
+
+
+//like & Unlike Routes
+router.post('/post-like', auth, postLikeUnlikeValidator, likeController.postLike);
+router.post('/post-unlike', auth, postLikeUnlikeValidator, likeController.postUnLike);
+router.post('/post-like-count', auth, postLikeCountValidator, likeController.postLikeCount);
 
 
 
