@@ -18,4 +18,19 @@ exports.loginValidator = [
 ];
 
 
+exports.createUserValidator = [
+    check('email', 'PLease provide a valid email').isEmail().normalizeEmail({
+        gmail_remove_dots:true
+    })
+];
 
+
+exports.updateUserValidator = [
+    check('id', 'id is required').not().isEmpty(),
+    check('name', 'name is required').not().isEmpty(),
+];
+
+
+exports.deleteUserValidator = [
+    check('id', 'id is required').not().isEmpty()
+];

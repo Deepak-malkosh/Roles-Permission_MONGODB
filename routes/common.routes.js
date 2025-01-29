@@ -7,9 +7,14 @@ const { categoryAddValidator, categoryDeleteValidator , categoryUpdateValidator,
     postDeleteValidator,  postupdateValidator
     } = require('../helpers/adminValidator');
 
+
+const { createUserValidator , updateUserValidator, deleteUserValidator } = require('../helpers/validator')   
+
 const categoryController = require('../controller/categoryController');
 
 const postController = require('../controller/postController');
+
+const userController = require('../controller/userController');
 
 
 //category Routes
@@ -27,6 +32,11 @@ router.put('/update-post', auth, postupdateValidator, postController.updatePost)
 router.delete('/delete-post', auth, postDeleteValidator, postController.deletePost);
 
 
+//User Routes
+router.post('/create-user', auth, createUserValidator, userController.createUser);
+router.get('/get-users', auth, userController.getUsers);
+router.put('/update-user', auth, updateUserValidator, userController.updateUser);
+router.delete('/delete-user', auth, deleteUserValidator, userController.deleteUser);
 
 
 
