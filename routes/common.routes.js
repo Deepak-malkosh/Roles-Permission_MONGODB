@@ -17,7 +17,7 @@ const postController = require('../controller/postController');
 
 const userController = require('../controller/userController');
 
-const likeController = require('../controller/likeController')
+const likeController = require('../controller/likeController');
 
 
 //category Routes
