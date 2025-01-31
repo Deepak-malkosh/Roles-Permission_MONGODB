@@ -6,6 +6,9 @@ const jwt = require('jsonwebtoken');
 
 const bcrypt = require('bcrypt');
 
+const Permission = require('../models/permission.models');
+const UserPermission = require('../models/userPermission.models');
+
 const registerUser = async (req, res) =>{
 
     try {
@@ -38,6 +41,32 @@ const registerUser = async (req, res) =>{
          });
 
          const userData = await user.save();
+
+
+         const defaultPermission = await Permission.find({
+            is_default:1
+         });
+
+
+         if(defaultPermission.length > 0){
+             
+            const permissionArray = [];
+            defaultPermission.forEach(permission =>{
+                permissionArray.push({
+                    permission_name:permission.permission_name,
+                    permission_value:[0,1,2,3]
+                })                
+            });
+
+            const userPermisison = new UserPermission({
+                user_id:userData._id,
+                permissions:permissionArray
+             });
+
+             await userPermisison.save();
+
+         }
+
 
          return res.status(200).json({
             success:true,
@@ -92,12 +121,50 @@ const loginUser = async (req, res) =>{
 
         const accessToken = await generateToken({user:userData});
 
+
+        //get user data with all permissions
+        const result = await User.aggregate([
+            {
+                $match:{email:userData.email}
+            },
+            {
+                $lookup:{
+                    from:"userpermissions",
+                    localField:"_id",
+                    foreignField:"user_id",
+                    as:"permissions"
+                }
+            },
+            {
+                $project:{
+                    _id:1,
+                    name:1,
+                    email:1,
+                    role:1,
+                    permissions: {
+                        $cond: {
+                            if: { $isArray: "$permissions" },
+                            then: { $arrayElemAt: ["$permissions",0]},
+                            else: null
+                        }
+                    }
+                }
+            },
+            {
+                $addFields:{
+                    "permissions":{
+                       "permissions":"$permissions.permissions" 
+                    }
+                }
+            }
+        ])
+
         return res.status(200).json({
             success:true,
             msg:'Login Successfully !',
             accessToken: accessToken,
             tokenType:'Bearer',
-            data:userData
+            data:result
         });
         
         
