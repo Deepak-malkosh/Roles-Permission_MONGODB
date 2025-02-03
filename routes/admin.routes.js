@@ -1,5 +1,5 @@
 const express = require('express');
-const router = express();
+const router = express.Router();
 
 const auth = require('../middleware/auth');
 
@@ -10,6 +10,8 @@ const { permissionAddValidator, permissionDeleteValidator, permissionUpdateValid
 const permissionController = require('../controller/admin/permissionController');
 
 const roleController = require('../controller/admin/roleController');
+
+const routerController = require('../controller/admin/routerController')
 
 // admin Routes
 router.post('/add-permission',auth, onlyAdminCanAccess, permissionAddValidator, permissionController.addPermission);
@@ -22,5 +24,8 @@ router.delete('/delete-permission',auth, onlyAdminCanAccess, permissionDeleteVal
 //role Routes
 router.post('/store-role',auth, onlyAdminCanAccess, storeRoleValidator, roleController.storeRole);
 router.get('/get-roles',auth, onlyAdminCanAccess, roleController.getRoles);
+
+
+// router.get('/all-routes', auth, onlyAdminCanAccess, routerController.getAllRoutes);
 
 module.exports = router;
