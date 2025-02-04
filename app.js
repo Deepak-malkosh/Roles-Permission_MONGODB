@@ -25,17 +25,7 @@ app.use('/api',authRoute);
 const adminRoute = require('./routes/admin.routes');
 app.use('/admin',adminRoute); 
 
-//common route
-const commonRoute = require('./routes/common.routes');
-app.use('/api',commonRoute)
 
-
-const auth = require('./middleware/auth');
-const { onlyAdminCanAccess } = require('./middleware/adminMiddleware');
-
-const routerController = require('./controller/admin/routerController')
-
-app.get('/admin/all-routes', auth, onlyAdminCanAccess, routerController.getAllRoutes);
 
 
 
