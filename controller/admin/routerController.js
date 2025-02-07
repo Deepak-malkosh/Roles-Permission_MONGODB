@@ -1,3 +1,6 @@
+const RouterPermission = require('../../models/routerPermission.models');
+
+const { validationResult } = require('express-validator');
 
 
 const getAllRoutes = async (req, res) =>{
@@ -34,6 +37,77 @@ const getAllRoutes = async (req, res) =>{
 }
 
 
+const addRouterPermission = async (req, res) =>{
+    try {
+
+        const errors = validationResult(req);
+        if(!errors.isEmpty()){
+           return res.status(400).json({
+               success:false,
+               msg:'Errors',
+               errors:errors.array() 
+           });
+        }
+
+        const { router_endpoint, role, permission_id, permission} = req.body;
+
+        const routerPermission = await RouterPermission.findOneAndUpdate(
+            { router_endpoint, role},
+            {router_endpoint, role, permission_id, permission},
+            {upsert:true, new:true, setDefaultsOnInsert:true}
+        );
+
+        return res.status(200).json({
+            success:true,
+            msg:'Router Permission added/updated !',
+            data:routerPermission
+        });
+        
+    } catch (error) {
+        return res.status(400).json({
+            success:false,
+            msg:error.message
+        });
+    }
+}
+
+
+
+const getRouterPermission = async (req, res) =>{
+    try {
+
+        const errors = validationResult(req);
+        if(!errors.isEmpty()){
+           return res.status(400).json({
+               success:false,
+               msg:'Errors',
+               errors:errors.array() 
+           });
+        }
+
+        const { router_endpoint } = req.body;
+
+        const routerPermissions =  await RouterPermission.find({
+            router_endpoint
+        }).populate('permission_id');
+
+        return res.status(200).json({
+            success:true,
+            msg:'Router Permissions !',
+            data:routerPermissions
+        });
+        
+    } catch (error) {
+        return res.status(400).json({
+            success:false,
+            msg:error.message
+        }); 
+    }
+}
+
+
 module.exports = {
-    getAllRoutes
+    getAllRoutes,
+    addRouterPermission,
+    getRouterPermission
 }

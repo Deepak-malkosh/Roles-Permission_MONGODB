@@ -9,6 +9,8 @@ const bcrypt = require('bcrypt');
 const Permission = require('../models/permission.models');
 const UserPermission = require('../models/userPermission.models');
 
+const helper = require('../helpers/helper');
+
 const registerUser = async (req, res) =>{
 
     try {
@@ -48,7 +50,7 @@ const registerUser = async (req, res) =>{
          });
 
 
-         if(defaultPermission.length > 0){
+        if(defaultPermission.length > 0){
              
             const permissionArray = [];
             defaultPermission.forEach(permission =>{
@@ -65,10 +67,10 @@ const registerUser = async (req, res) =>{
 
              await userPermisison.save();
 
-         }
+        }
 
 
-         return res.status(200).json({
+        return res.status(200).json({
             success:true,
             msg:'Registered Successfully!',
             data:userData
@@ -200,8 +202,32 @@ const getProfile = async (req, res) =>{
 }
 
 
+
+const getUserPermissions = async (req, res) =>{
+    try {
+
+        const user_id = req.user._id;
+
+        const userPermissions = await helper.getUserPermission(user_id);
+
+        return res.status(200).json({
+            success:true,
+            msg:'User Permissions',
+            data:userPermissions
+        });
+        
+    } catch (error) {
+        return res.status(400).json({
+            success:false,
+            msg:error.message
+        });
+    }
+}
+
+
 module.exports = {
     registerUser,
     loginUser,
-    getProfile
+    getProfile,
+    getUserPermissions
 }
