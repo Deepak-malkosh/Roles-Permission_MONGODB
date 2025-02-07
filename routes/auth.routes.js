@@ -13,6 +13,7 @@ router.post('/login', loginValidator, authController.loginUser);
 
 router.get('/profile', auth, authController.getProfile);
 
+router.get('/refresh-permissions', auth, authController.getUserPermissions);
 
 
 module.exports = router;
